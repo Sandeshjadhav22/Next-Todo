@@ -1,9 +1,13 @@
 import Link from "next/link";
 import React from "react";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Navbar = () => {
   return (
     <>
+    <ToastContainer/>
       <header className="w-full md:w-[70%] py-3 px-2 mx-auto ">
         <nav className="w-full flex justify-between items-center">
           <Link href={"'/"} className="font-bold text-2xl">

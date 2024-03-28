@@ -2,6 +2,7 @@
 import Todo from "@/components/Todo";
 
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Home() {
     const [todo, setTodo] = useState({
@@ -13,6 +14,10 @@ export default function Home() {
       ...todo, 
       ['title']: e.target.value
     })
+    const reset = (e) => setTodo({
+      title:"",
+      description:"",
+    })
     const SetDescription = (e) => setTodo({
       ...todo, 
       ['description']: e.target.value
@@ -21,9 +26,11 @@ export default function Home() {
     const onSubmitHandler = async(e) => {
       e.preventDefault()
       try {
-        
+        //APi code
+        toast.success('Todo created')
+        reset()
       } catch (error) {
-        console.log("Error");
+        toast.error("Error");
       }
     }
   return (
