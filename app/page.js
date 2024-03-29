@@ -52,6 +52,22 @@ export default function Home() {
     }
   };
 
+  const DeleteTodo = async (id) => {
+    try {
+      //APi code
+      const response = await axios.delete(`/api`, {
+        params:{
+          id:id
+        }
+      });
+
+      toast.success(response.data.msg);
+      await FetchTodos()
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   useEffect(() => {
     FetchTodos();
   }, []);
@@ -121,6 +137,7 @@ export default function Home() {
                         description={c.description}
                         title={c.title}
                         mongoId={c._id}
+                        deleteFunction={DeleteTodo}
                       />
                     );
                   })}

@@ -15,12 +15,21 @@ export async function POST(request) {
     title,
     description,
   });
-  return NextResponse.json({ msg: "Todo Created" });
+  return NextResponse.json({ msg: "Todo Created" },{
+    status:201
+  });
 }
 
 export async function GET(request) {
-  
   const todos = await TodoModel.find({});
 
   return NextResponse.json({ todos });
+}
+export async function DELETE(request) {
+  const id = request.nextUrl.searchParams.get("id")
+  await TodoModel.findByIdAndDelete(id)
+
+  return NextResponse.json({msg:"Todo Deleted"},{
+    status:200
+  });
 }
