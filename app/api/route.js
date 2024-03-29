@@ -25,11 +25,27 @@ export async function GET(request) {
 
   return NextResponse.json({ todos });
 }
+
+
 export async function DELETE(request) {
   const id = request.nextUrl.searchParams.get("id")
   await TodoModel.findByIdAndDelete(id)
 
   return NextResponse.json({msg:"Todo Deleted"},{
+    status:200
+  });
+}
+
+
+export async function PUT(request) {
+  const id = request.nextUrl.searchParams.get("id")
+  await TodoModel.findByIdAndUpdate(id,{
+    $set:{
+      isCompleted:true
+    }
+  })
+
+  return NextResponse.json({msg:"Todo Update"},{
     status:200
   });
 }
