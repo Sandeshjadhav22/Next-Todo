@@ -1,6 +1,6 @@
 import React from "react";
 
-const Todo = () => {
+const Todo = ({title,description,complete,id,mongoId}) => {
   return (
     <>
       <tr className="border-b ">
@@ -8,11 +8,11 @@ const Todo = () => {
           scope="row"
           className="px-6 py-4 font-medium text-purple-700 whitespace-nowrap"
         >
-          1
+          {id+1}
         </th>
-        <td className="px-6 py-4">Learn java</td>
-        <td className="px-6 py-4">today task introduction of java</td>
-        <td className="px-6 py-4">Complete</td>
+        <td className="px-6 py-4">{title}</td>
+        <td className="px-6 py-4">{description}</td>
+        <td className="px-6 py-4">{complete ? 'complete':'UnComplete'}</td>
         <td className="px-6 py-4 space-x-3 ">
           
           <button className="bg-purple-500 px-12 py-3 hover:bg-purple-700 duration-300 transition-all text-white rounded-md">
