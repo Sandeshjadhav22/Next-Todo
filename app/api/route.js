@@ -1,6 +1,7 @@
 import { ConnectDb } from "@/lib/config/db";
 import { NextResponse } from "next/server";
 import dotenv from "dotenv";
+import TodoModel from "@/lib/models/TodoModel";
 dotenv.config()
 
 const LoadDB = async() => {
@@ -9,6 +10,11 @@ const LoadDB = async() => {
 LoadDB()   
  
 
-export async function GET(request){
-  return NextResponse.json({msg:"hello sandy api"})
+export async function POST(request){
+  const {title,description} = await request.json()
+  await TodoModel.create({
+    title,
+    description
+  })
+  return NextResponse.json({msg:"Todo Created"})
 }

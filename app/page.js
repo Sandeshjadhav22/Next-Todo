@@ -1,5 +1,6 @@
 'use client'
 import Todo from "@/components/Todo";
+import axios from "axios";
 
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -27,10 +28,15 @@ export default function Home() {
       e.preventDefault()
       try {
         //APi code
-        toast.success('Todo created')
+
+        const response = await axios.post(`/api`, todo)
+        
+
+
+        toast.success(response.data.msg)
         reset()
       } catch (error) {
-        toast.error("Error");
+        toast.error(error.response.data.message);
       }
     }
   return (
